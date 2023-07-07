@@ -2,13 +2,13 @@
   "name": "telegram-bot-starter",
   "version": "1.0.0",
   "description": "Telegram bot starter based on grammY",
-  "main": "dist/app.js",
+  "main": "build/app.js",
   "repository": "https://github.com/Borodutch/telegram-bot-template",
   "author": "backmeupplz <backmeupplz@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "distribute": "yarn build-ts && node dist/app.js",
-    "develop": "tsc-watch --skipLibCheck --onSuccess 'node dist/app.js'",
+    "distribute": "yarn build-ts && node build/app.js",
+    "develop": "tsc-watch --skipLibCheck --onSuccess 'node build/app.js'",
     "build-ts": "tsc --skipLibCheck",
     "pretty": "prettier --check api",
     "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json api"
@@ -44,7 +44,7 @@
     "typescript": "^4.5.2"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "build"
   },
   "packageManager": "yarn@3.1.0"
 }
