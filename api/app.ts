@@ -17,8 +17,6 @@ import motivate from '@/handlers/motivate'
 import sendHelp from '@/handlers/help'
 import startMongo from '@/helpers/startMongo'
 
-export default webhookCallback(bot, 'http')
-
 async function runApp() {
   console.log('Starting app...')
   // Mongo
@@ -49,3 +47,5 @@ async function runApp() {
 }
 
 void runApp()
+
+export default webhookCallback(bot, 'http')
