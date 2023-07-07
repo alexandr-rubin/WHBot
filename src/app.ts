@@ -4,7 +4,6 @@ import 'source-map-support/register'
 
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
-import { webhookCallback } from 'grammy'
 import attachUser from '@/middlewares/attachUser'
 import autoMotivate, { stopMotivate } from '@/handlers/autoMotivate'
 import bot from '@/helpers/bot'
@@ -47,5 +46,3 @@ async function runApp() {
 }
 
 void runApp()
-
-export default webhookCallback(bot, 'http')
