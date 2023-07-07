@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "src",
+    "baseUrl": "api",
     "paths": {
       "@/*": ["*"]
     },
@@ -14,5 +14,5 @@
     "experimentalDecorators": true,
     "strict": true
   },
-  "include": ["src/**/*"]
+  "include": ["api/**/*"]
 }
