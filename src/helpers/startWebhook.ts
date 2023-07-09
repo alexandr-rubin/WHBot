@@ -9,5 +9,6 @@ webhookApp.use(express.json())
 webhookApp.use(webhookCallback(bot, 'express'))
 
 webhookApp.post('/', (req, res) => {
-  res.send('hello suk')
+  console.log(req.body)
+  res.status(200).send('ok')
 })
