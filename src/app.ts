@@ -56,6 +56,7 @@ async function runApp() {
   for (const update of updates) {
     await bot.handleUpdate(update)
   }
+  await bot.start()
   //run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.use(webhookCallback(bot, 'express'))
