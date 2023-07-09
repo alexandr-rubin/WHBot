@@ -1,5 +1,4 @@
-import Context from '@/models/Context'
-import getMotivationPhoto from '@/helpers/motivationPhotos'
+import Context from '../models/Context'
 
 export default async function motivate(ctx: Context) {
   const photoUrl =

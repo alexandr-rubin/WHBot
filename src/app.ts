@@ -5,19 +5,18 @@ import 'source-map-support/register'
 import { Message } from 'grammy/types'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
-import { webhookApp } from '@/helpers/startWebhook'
+import { webhookApp } from './helpers/startWebhook'
 import { webhookCallback } from 'grammy'
-import attachUser from '@/middlewares/attachUser'
-import autoMotivate, { stopMotivate } from '@/handlers/autoMotivate'
-import bot from '@/helpers/bot'
-import chatGPT from '@/handlers/chatGPT'
-import configureI18n from '@/middlewares/configureI18n'
-import handleLanguage from '@/handlers/language'
-import i18n from '@/helpers/i18n'
-import languageMenu from '@/menus/language'
-import motivate from '@/handlers/motivate'
-import sendHelp from '@/handlers/help'
-import startMongo from '@/helpers/startMongo'
+import attachUser from './middlewares/attachUser'
+import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
+import bot from './helpers/bot'
+import configureI18n from './middlewares/configureI18n'
+import handleHelp from './handlers/help'
+import handleLanguage from './handlers/language'
+import i18n from './helpers/i18n'
+import languageMenu from './menus/language'
+import motivate from './handlers/motivate'
+import startMongo from './helpers/startMongo'
 
 async function runApp() {
   console.log('Starting app...')
@@ -34,7 +33,7 @@ async function runApp() {
     // Menus
     .use(languageMenu)
   // Commands
-  bot.command(['help', 'start'], sendHelp)
+  bot.command(['help', 'start'], handleHelp)
   bot.command('language', handleLanguage)
   bot.command('motivate', motivate)
   bot.command('autoMotivationON', autoMotivate)

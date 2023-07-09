@@ -7,9 +7,9 @@
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    },
+    // "paths": {
+    //   "@/*": ["*"]
+    // },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strict": true

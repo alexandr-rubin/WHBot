@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai'
-import env from '@/helpers/env'
+import env from '../helpers/env'
 
 const openaiApiKey = env.OPENAIAPIKEY
 
