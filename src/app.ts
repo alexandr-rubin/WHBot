@@ -7,6 +7,7 @@ import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
 import { webhookApp } from './helpers/startWebhook'
 import { webhookCallback } from 'grammy'
+import Cluster from './helpers/Cluster'
 import attachUser from './middlewares/attachUser'
 import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
@@ -52,8 +53,10 @@ async function runApp() {
   // const updates = await bot.api.getUpdates()
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
-  webhookApp.use(webhookCallback(bot, 'express'))
+  //webhookApp.use(webhookCallback(bot, 'express'))
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
-void runApp()
+if (Cluster.isPrimary) {
+  void runApp()
+}
