@@ -49,13 +49,13 @@ async function runApp() {
   // Удаление активного вебхука
   //await bot.api.deleteWebhook()
 
-  // // Получение обновлений через метод getUpdates
-  // const updates = await bot.api.getUpdates()
+  // Получение обновлений через метод getUpdates
+  const updates = await bot.api.getUpdates()
 
-  // // Обработка полученных обновлений
-  // for (const update of updates) {
-  //   await bot.handleUpdate(update)
-  // }
+  // Обработка полученных обновлений
+  for (const update of updates) {
+    await bot.handleUpdate(update)
+  }
   await bot.start()
   //run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
