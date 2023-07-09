@@ -50,7 +50,7 @@ async function runApp() {
   // const updates = await bot.api.getUpdates()
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
-  webhookApp.use(webhookCallback(bot, 'express'))
+  //webhookApp.use(webhookCallback(bot, 'express'))
 
   // webhookApp.post('/webhook', async (req, res) => {
   //   const { body } = req
