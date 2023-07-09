@@ -44,6 +44,7 @@ async function runApp() {
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
+  await bot.api.deleteWebhook()
   // Start bot
   await bot.init()
 
