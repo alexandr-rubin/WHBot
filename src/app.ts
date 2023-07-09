@@ -52,33 +52,33 @@ async function runApp() {
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.use(webhookCallback(bot, 'express'))
 
-  webhookApp.post('/webhook', async (req, res) => {
-    const { body } = req
-    // Проверка, является ли входящий запрос от Telegram
-    if (!body || !body.message) {
-      res.sendStatus(200)
-      return
-    }
+  // webhookApp.post('/webhook', async (req, res) => {
+  //   const { body } = req
+  //   // Проверка, является ли входящий запрос от Telegram
+  //   if (!body || !body.message) {
+  //     res.sendStatus(200)
+  //     return
+  //   }
 
-    // Извлечение информации из входящего сообщения
-    const message: Message = body.message
-    const chatId = message.chat.id
-    const text = message.text
+  //   // Извлечение информации из входящего сообщения
+  //   const message: Message = body.message
+  //   const chatId = message.chat.id
+  //   const text = message.text
 
-    // Обработка команд от пользователя
-    if (text === '/start') {
-      await bot.api.sendMessage(chatId, 'Привет! Добро пожаловать!')
-    } else if (text === '/help') {
-      await bot.api.sendMessage(chatId, 'Нужна помощь?')
-    } else {
-      await bot.api.sendMessage(
-        chatId,
-        'Неизвестная команда. Попробуйте ещё раз.'
-      )
-    }
+  //   // Обработка команд от пользователя
+  //   if (text === '/start') {
+  //     await bot.api.sendMessage(chatId, 'Привет! Добро пожаловать!')
+  //   } else if (text === '/help') {
+  //     await bot.api.sendMessage(chatId, 'Нужна помощь?')
+  //   } else {
+  //     await bot.api.sendMessage(
+  //       chatId,
+  //       'Неизвестная команда. Попробуйте ещё раз.'
+  //     )
+  //   }
 
-    res.sendStatus(200)
-  })
+  //   res.sendStatus(200)
+  // })
 
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
