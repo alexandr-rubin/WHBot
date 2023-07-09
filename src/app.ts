@@ -56,7 +56,6 @@ async function runApp() {
   // }
   // await bot.start()
   // webhookApp.use(webhookCallback(bot, 'express'))
-  await bot.api.setWebhook('https://wh-bot-alexandr-rubin.vercel.app')
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
@@ -65,5 +64,3 @@ async function runApp() {
 //if (Cluster.isPrimary) {
 void runApp()
 //}
-
-export default webhookCallback(bot, 'express')
