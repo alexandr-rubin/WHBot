@@ -45,7 +45,7 @@ async function runApp() {
   // Errors
   bot.catch(console.error)
   // Start bot
-  //await bot.init()
+  await bot.init()
   // Удаление активного вебхука
   //await bot.api.deleteWebhook()
 
