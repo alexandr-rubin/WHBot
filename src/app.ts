@@ -5,7 +5,8 @@ import 'source-map-support/register'
 import { Message } from 'grammy/types'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
-import { webhookApp } from '@/helpers/startWebhook'
+//import { webhookApp } from '@/helpers/startWebhook'
+import * as express from 'express'
 import { webhookCallback } from 'grammy'
 import attachUser from '@/middlewares/attachUser'
 import autoMotivate, { stopMotivate } from '@/handlers/autoMotivate'
@@ -18,6 +19,15 @@ import languageMenu from '@/menus/language'
 import motivate from '@/handlers/motivate'
 import sendHelp from '@/handlers/help'
 import startMongo from '@/helpers/startMongo'
+
+// eslint-disable-next-line import/prefer-default-export
+export const webhookApp = express()
+
+webhookApp.use(express.json())
+
+webhookApp.post('/', (req, res) => {
+  res.send('sukahello')
+})
 
 async function runApp() {
   console.log('Starting app...')
@@ -44,6 +54,7 @@ async function runApp() {
   bot.catch(console.error)
   // Start bot
   await bot.init()
+  ////////////////////////////////////////////////////////////
   // Удаление активного вебхука
   await bot.api.deleteWebhook()
 
@@ -51,6 +62,8 @@ async function runApp() {
   const updates = await bot.api.getUpdates()
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
+
+  webhookApp.use(express.json())
   webhookApp.use(webhookCallback(bot, 'express'))
 
   webhookApp.post('/webhook', async (req, res) => {
@@ -77,6 +90,10 @@ async function runApp() {
         'Неизвестная команда. Попробуйте ещё раз.'
       )
     }
+
+    webhookApp.post('/', (req, res) => {
+      res.send('sukahello')
+    })
 
     res.sendStatus(200)
   })
