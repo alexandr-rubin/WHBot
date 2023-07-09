@@ -43,11 +43,11 @@ async function runApp() {
   bot.catch(console.error)
   // Start bot
   await bot.init()
-  // Удаление активного вебхука
-  await bot.api.deleteWebhook()
+  // // Удаление активного вебхука
+  // await bot.api.deleteWebhook()
 
-  // Получение обновлений через метод getUpdates
-  const updates = await bot.api.getUpdates()
+  // // Получение обновлений через метод getUpdates
+  // const updates = await bot.api.getUpdates()
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.use(webhookCallback(bot, 'express'))
