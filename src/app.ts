@@ -44,6 +44,7 @@ async function runApp() {
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
+  webhookApp.use(webhookCallback(bot, 'express'))
   // Start bot
   await bot.init()
 
@@ -56,22 +57,12 @@ async function runApp() {
   // }
   // await bot.start()
 
-  webhookApp.post('/webhook', async (req, res) => {
-    const update = req.body
-    // Обработка полученного обновления
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    await bot.handleUpdate(update)
-    res.sendStatus(200)
-  })
+  // await bot.api.deleteWebhook()
 
-  await bot.api.deleteWebhook()
-
-  // Настройка вебхука
-  await bot.api.setWebhook(
-    'https://api.telegram.org/bot5855393087:AAElgj0uMwt3llKcLZuWwR5aDjYxNim88_M/setWebhook?url=https://wh-bot-alexandr-rubin.vercel.app/webhook'
-  )
-
-  webhookApp.use(webhookCallback(bot, 'express'))
+  // // Настройка вебхука
+  // await bot.api.setWebhook(
+  //   'https://api.telegram.org/bot5855393087:AAElgj0uMwt3llKcLZuWwR5aDjYxNim88_M/setWebhook?url=https://wh-bot-alexandr-rubin.vercel.app/webhook'
+  // )
 
   run(bot)
 
