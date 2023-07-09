@@ -44,25 +44,8 @@ async function runApp() {
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
-  webhookApp.use(webhookCallback(bot, 'express'))
   // Start bot
   await bot.init()
-
-  // // Получение обновлений через метод getUpdates
-  // const updates = await bot.api.getUpdates()
-
-  // // Обработка полученных обновлений
-  // for (const update of updates) {
-  //   await bot.handleUpdate(update)
-  // }
-  // await bot.start()
-
-  // await bot.api.deleteWebhook()
-
-  // // Настройка вебхука
-  // await bot.api.setWebhook(
-  //   'https://api.telegram.org/bot5855393087:AAElgj0uMwt3llKcLZuWwR5aDjYxNim88_M/setWebhook?url=https://wh-bot-alexandr-rubin.vercel.app/webhook'
-  // )
 
   run(bot)
 
@@ -70,6 +53,4 @@ async function runApp() {
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
-//if (Cluster.isPrimary) {
 void runApp()
-//}
