@@ -64,5 +64,5 @@ async function runApp() {
 }
 
 //if (Cluster.isPrimary) {
-void runApp()
+//void runApp()
 //}
