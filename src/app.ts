@@ -57,6 +57,6 @@ async function runApp() {
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
-if (Cluster.isPrimary) {
-  void runApp()
-}
+//if (Cluster.isPrimary) {
+void runApp()
+//}
