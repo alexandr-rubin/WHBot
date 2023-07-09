@@ -44,10 +44,10 @@ async function runApp() {
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
+  // Удаление активного вебхука
+  await bot.api.deleteWebhook()
   // Start bot
   await bot.init()
-  // Удаление активного вебхука
-  //await bot.api.deleteWebhook()
 
   // // Получение обновлений через метод getUpdates
   // const updates = await bot.api.getUpdates()
@@ -57,12 +57,15 @@ async function runApp() {
   //   await bot.handleUpdate(update)
   // }
   // await bot.start()
-  webhookApp.use(webhookCallback(bot, 'express'))
 
-  webhookApp.post('/webhook', (req, res) => {
-    console.log(req.body)
-    res.status(200).send('ok')
+  webhookApp.post('/webhook', async (req, res) => {
+    const update = req.body
+    // Обработка полученного обновления
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    await bot.handleUpdate(update)
+    res.sendStatus(200)
   })
+  webhookCallback(bot, 'express')
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
