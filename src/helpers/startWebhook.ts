@@ -6,5 +6,5 @@ export const webhookApp = express()
 webhookApp.use(express.json())
 
 webhookApp.post('/', (req, res) => {
-  res.send('hello')
+  res.send('hello suk')
 })
