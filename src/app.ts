@@ -46,6 +46,11 @@ async function runApp() {
   bot.catch(console.error)
   // Удаление активного вебхука
   await bot.api.deleteWebhook()
+
+  // Настройка вебхука
+  await bot.api.setWebhook(
+    'https://api.telegram.org/bot5855393087:AAElgj0uMwt3llKcLZuWwR5aDjYxNim88_M/setWebhook?url=https://wh-bot-alexandr-rubin.vercel.app/webhook'
+  )
   // Start bot
   await bot.init()
 
@@ -58,14 +63,14 @@ async function runApp() {
   // }
   // await bot.start()
 
-  webhookApp.post('/webhook', async (req, res) => {
-    const update = req.body
-    // Обработка полученного обновления
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    await bot.handleUpdate(update)
-    res.sendStatus(200)
-  })
-  webhookCallback(bot, 'express')
+  // webhookApp.post('/webhook', async (req, res) => {
+  //   const update = req.body
+  //   // Обработка полученного обновления
+  //   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  //   await bot.handleUpdate(update)
+  //   res.sendStatus(200)
+  // })
+  webhookApp.use(webhookCallback(bot, 'express'))
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
