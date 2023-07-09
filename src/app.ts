@@ -44,7 +44,7 @@ async function runApp() {
   // Start bot
   await bot.init()
   // // Удаление активного вебхука
-  await bot.api.deleteWebhook()
+  //await bot.api.deleteWebhook()
 
   // // Получение обновлений через метод getUpdates
   // const updates = await bot.api.getUpdates()
