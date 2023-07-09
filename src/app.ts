@@ -53,7 +53,7 @@ async function runApp() {
   // const updates = await bot.api.getUpdates()
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
-  //webhookApp.use(webhookCallback(bot, 'express'))
+  webhookApp.use(webhookCallback(bot, 'express'))
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
