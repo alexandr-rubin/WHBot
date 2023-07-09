@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 
 // eslint-disable-next-line import/prefer-default-export
 export const webhookApp = express()
