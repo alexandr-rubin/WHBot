@@ -21,6 +21,7 @@ import motivate from './handlers/motivate'
 import startMongo from './helpers/startMongo'
 
 async function runApp() {
+  await bot.api.deleteWebhook()
   console.log('Starting app...')
   // Mongo
   await startMongo()
@@ -44,7 +45,6 @@ async function runApp() {
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
-  await bot.api.deleteWebhook()
   // Start bot
   await bot.init()
 
