@@ -45,7 +45,7 @@ async function runApp() {
   // Errors
   bot.catch(console.error)
   // Start bot
-  await bot.init()
+  // await bot.init()
   // Удаление активного вебхука
   //await bot.api.deleteWebhook()
 
@@ -56,12 +56,11 @@ async function runApp() {
   // for (const update of updates) {
   //   await bot.handleUpdate(update)
   // }
-  //await bot.start()
-  webhookApp.post(`/YOUR_BOT_TOKEN`, webhookCallback(bot, 'express'))
-  run(bot)
+  await bot.start()
+  //run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   //webhookApp.use(webhookCallback(bot, 'express'))
-  webhookApp.listen(4242, () => console.log('Running on port 4242'))
+  //webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
 //if (Cluster.isPrimary) {
