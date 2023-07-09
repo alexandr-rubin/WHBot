@@ -21,7 +21,6 @@ import motivate from './handlers/motivate'
 import startMongo from './helpers/startMongo'
 
 async function runApp() {
-  await bot.api.deleteWebhook()
   console.log('Starting app...')
   // Mongo
   await startMongo()
@@ -56,7 +55,8 @@ async function runApp() {
   //   await bot.handleUpdate(update)
   // }
   // await bot.start()
-  webhookApp.use(webhookCallback(bot, 'express'))
+  // webhookApp.use(webhookCallback(bot, 'express'))
+  await bot.api.setWebhook('https://wh-bot-alexandr-rubin.vercel.app')
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
@@ -65,3 +65,5 @@ async function runApp() {
 //if (Cluster.isPrimary) {
 void runApp()
 //}
+
+export default webhookCallback(bot, 'express')
