@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "name": "WHBot",
+  "name": "telegram-bot-starter",
   "builds": [
     {
-      "src": "src/app",
+      "src": "src/app.ts",
       "use": "@vercel/node"
     }
   ],
