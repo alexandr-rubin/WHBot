@@ -25,9 +25,6 @@ async function runApp() {
   // Mongo
   await startMongo()
   console.log('Mongo connected')
-  await bot.api.setWebhook(
-    'https://api.telegram.org/bot5855393087:AAElgj0uMwt3llKcLZuWwR5aDjYxNim88_M/setWebhook?url=https://wh-bot-alexandr-rubin.vercel.app/webhook'
-  )
   bot
     // Middlewares
     .use(ignoreOldMessageUpdates)
@@ -58,12 +55,15 @@ async function runApp() {
   //   await bot.handleUpdate(update)
   // }
   // await bot.start()
-
-  // await bot.api.deleteWebhook()
-  // webhookApp.use(webhookCallback(bot, 'express'))
-
+  webhookApp.use(webhookCallback(bot, 'express'))
   run(bot)
 
+  webhookApp.post('/webhook', async (req, res) => {
+    // Обработка полученного обновления
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    await bot.handleUpdate(req.body)
+    res.sendStatus(200)
+  })
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
