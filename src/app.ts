@@ -63,13 +63,13 @@ async function runApp() {
   // }
   // await bot.start()
 
-  // webhookApp.post('/webhook', async (req, res) => {
-  //   const update = req.body
-  //   // Обработка полученного обновления
-  //   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  //   await bot.handleUpdate(update)
-  //   res.sendStatus(200)
-  // })
+  webhookApp.post('/webhook', async (req, res) => {
+    const update = req.body
+    // Обработка полученного обновления
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    await bot.handleUpdate(update)
+    res.sendStatus(200)
+  })
   webhookApp.use(webhookCallback(bot, 'express'))
   run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
