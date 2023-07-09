@@ -47,19 +47,19 @@ async function runApp() {
   // Start bot
   await bot.init()
   // Удаление активного вебхука
-  await bot.api.deleteWebhook()
+  //await bot.api.deleteWebhook()
 
-  // Получение обновлений через метод getUpdates
-  const updates = await bot.api.getUpdates()
+  // // Получение обновлений через метод getUpdates
+  // const updates = await bot.api.getUpdates()
 
-  // Обработка полученных обновлений
-  for (const update of updates) {
-    await bot.handleUpdate(update)
-  }
-  await bot.start()
-  //run(bot)
+  // // Обработка полученных обновлений
+  // for (const update of updates) {
+  //   await bot.handleUpdate(update)
+  // }
+  // await bot.start()
+  run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
-  webhookApp.use(webhookCallback(bot, 'express'))
+  // webhookApp.use(webhookCallback(bot, 'express'))
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
 
