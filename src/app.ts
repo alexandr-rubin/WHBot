@@ -12,13 +12,16 @@ import attachUser from './middlewares/attachUser'
 import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
 import configureI18n from './middlewares/configureI18n'
+import goDota from 'handlers/goDota'
 import handleHelp from './handlers/help'
 import handleLanguage from './handlers/language'
 import i18n from './helpers/i18n'
 import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
 import languageMenu from './menus/language'
+import mobilization from 'handlers/mobilization'
 import motivate from './handlers/motivate'
 import startMongo from './helpers/startMongo'
+import stikerDrop from 'handlers/stikerDrop'
 
 async function runApp() {
   console.log('Starting app...')
@@ -39,8 +42,10 @@ async function runApp() {
   bot.command(['help', 'start'], handleHelp)
   bot.command('language', handleLanguage)
   bot.command('motivate', motivate)
-  bot.command('autoMotivationON', autoMotivate)
-  bot.command('autoMotivationOFF', stopMotivate)
+  bot.command('buriatki', autoMotivate)
+  bot.command('stopBuriatki', stopMotivate)
+  bot.command('godota', goDota)
+  bot.command('mobilization', mobilization), bot.on(':sticker', stikerDrop)
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
