@@ -56,7 +56,7 @@ async function runApp() {
   // }
   // await bot.start()
   // webhookApp.use(webhookCallback(bot, 'express'))
-  run(bot)
+  // run(bot)
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
