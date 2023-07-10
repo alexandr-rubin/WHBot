@@ -1,26 +1,21 @@
 import Context from '../models/Context'
 import getMotivationPhoto from '../helpers/motivationPhotos'
 
-let motivationInterval: NodeJS.Timeout | null = null
-let isMotivating = false
+let motivationInterval: NodeJS.Timer
 
 export default function autoMotivate(ctx: Context) {
-  if (!isMotivating) {
-    isMotivating = true
-
-    motivationInterval = setInterval(async () => {
+  async function sendPeriodicMessage() {
+    if (ctx.chat) {
       const photoUrl = getMotivationPhoto()
-      await ctx.replyWithPhoto(photoUrl, {
-        caption: 'Работай, ленивый кусок!',
-      })
-    }, 5000)
+      return await ctx.api.sendPhoto(ctx.chat.id, photoUrl)
+    }
   }
+
+  // Запуск функции сразу и повторение каждые 5 секунд
+  motivationInterval = setInterval(sendPeriodicMessage, 5000)
+  return motivationInterval
 }
 
 export function stopMotivate() {
-  if (motivationInterval) {
-    clearInterval(motivationInterval)
-    motivationInterval = null
-    isMotivating = false
-  }
+  clearInterval(motivationInterval)
 }
