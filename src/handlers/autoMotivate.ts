@@ -11,7 +11,8 @@ export default function autoMotivate(ctx: Context) {
     })
   }
 
-  // Запустите функцию каждые 5 секунд
+  // Запуск функции сразу и повторение каждые 5 секунд
+  void sendPeriodicMessage()
   motivationInterval = setInterval(sendPeriodicMessage, 5000)
 }
 
