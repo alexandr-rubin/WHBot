@@ -3,17 +3,15 @@ import getMotivationPhoto from '../helpers/motivationPhotos'
 
 let motivationInterval: NodeJS.Timer
 
-export default function autoMotivate(ctx: Context) {
-  async function sendPeriodicMessage() {
-    if (ctx.chat) {
-      const photoUrl = getMotivationPhoto()
-      return await ctx.api.sendPhoto(ctx.chat.id, photoUrl)
-    }
-  }
+export default async function autoMotivate(ctx: Context) {
+  const photoUrl = getMotivationPhoto()
+  return await ctx.replyWithPhoto(photoUrl, {
+    caption: 'こんにちは',
+  })
 
   // Запуск функции сразу и повторение каждые 5 секунд
-  motivationInterval = setInterval(sendPeriodicMessage, 5000)
-  return motivationInterval
+  // void sendPeriodicMessage()
+  // motivationInterval = setInterval(sendPeriodicMessage, 5000)
 }
 
 export function stopMotivate() {
