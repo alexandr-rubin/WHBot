@@ -12,6 +12,7 @@ import attachUser from './middlewares/attachUser'
 import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
 import configureI18n from './middlewares/configureI18n'
+import flipCoin from 'handlers/flipCoin'
 import goDota from './handlers/goDota'
 import handleHelp from './handlers/help'
 import handleLanguage from './handlers/language'
@@ -45,7 +46,9 @@ async function runApp() {
   bot.command('buriatki', autoMotivate)
   bot.command('stopBuriatki', stopMotivate)
   bot.command('godota', goDota)
-  bot.command('mobilization', mobilization), bot.on(':sticker', stikerDrop)
+  bot.command('flipcoin', flipCoin)
+  bot.command('mobilization', mobilization)
+  bot.on(':sticker', stikerDrop)
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
@@ -65,6 +68,8 @@ async function runApp() {
   console.info(`Bot ${bot.botInfo.username} is up and running`)
   webhookApp.listen(4242, () => console.log('Running on port 4242'))
 }
+
+// TODO: add vercel req limiter
 
 //if (Cluster.isPrimary) {
 void runApp()
