@@ -6,8 +6,8 @@
     "lib": ["es2015"],
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": "src",
+    "outDir": "/dist",
+    "baseUrl": "/src",
     // "paths": {
     //   "@/*": ["*"]
     // },

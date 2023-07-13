@@ -2,12 +2,9 @@ import 'module-alias/register'
 import 'reflect-metadata'
 import 'source-map-support/register'
 
-import { Message } from 'grammy/types'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
-import { run } from '@grammyjs/runner'
 import { webhookApp } from './helpers/startWebhook'
-import { webhookCallback } from 'grammy'
-import Cluster from './helpers/Cluster'
+import ahaha from './handlers/AHAHA'
 import attachUser from './middlewares/attachUser'
 import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
@@ -48,6 +45,7 @@ async function runApp() {
   bot.command('godota', goDota)
   bot.command('flipcoin', flipCoin)
   bot.command('mobilization', mobilization)
+  bot.command('ahaha', ahaha)
   bot.on(':sticker', stikerDrop)
   // bot.on('message', chatGPT)
   // Errors
