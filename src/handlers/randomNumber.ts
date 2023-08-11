@@ -2,7 +2,7 @@ import Context from '../models/Context'
 
 export default async function generateRandomNumberInRange(ctx: Context) {
   if (ctx.message && ctx.message.text) {
-    const arr = ctx.message.text.split('-')
+    const arr = ctx.message.text.trim().split('-')
     if (arr.length < 2) {
       return await ctx.reply('Нипонял')
     }
