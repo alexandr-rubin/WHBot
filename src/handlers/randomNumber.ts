@@ -14,10 +14,8 @@ export default async function generateRandomNumberInRange(ctx: Context) {
     // обработать ошибка когда приходит не число
     const min: number = +arr[0]
     const max: number = +arr[1]
-    if (min >= max) {
-      return await ctx.reply(
-        'Минимальное значение должно быть меньше максимального.'
-      )
+    if (min == max) {
+      return await ctx.reply('Ти тупой?')
     }
 
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
