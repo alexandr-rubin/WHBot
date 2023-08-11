@@ -10,6 +10,7 @@ import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
 import configureI18n from './middlewares/configureI18n'
 import flipCoin from './handlers/flipCoin'
+import generateRandomNumberInRange from './handlers/randomNumber'
 import goDota from './handlers/goDota'
 import handleHelp from './handlers/help'
 import handleLanguage from './handlers/language'
@@ -46,6 +47,7 @@ async function runApp() {
   bot.command('flipcoin', flipCoin)
   bot.command('mobilization', mobilization)
   bot.command('ahaha', ahaha)
+  bot.command('random', generateRandomNumberInRange)
   bot.on(':sticker', stikerDrop)
   // bot.on('message', chatGPT)
   // Errors
