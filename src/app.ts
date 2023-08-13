@@ -40,7 +40,7 @@ async function runApp() {
   // Commands
   bot.command(['help', 'start'], handleHelp)
   bot.command('language', handleLanguage)
-  bot.command('motivate', motivate)
+  bot.command('video', motivate)
   bot.command('buriatki', autoMotivate)
   bot.command('stopBuriatki', stopMotivate)
   bot.command('godota', goDota)
