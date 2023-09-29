@@ -1,6 +1,4 @@
-import { CreateCompletionRequest, CreateCompletionResponse } from 'openai'
 import Context from '../models/Context'
-import openai from '../helpers/openai'
 
 export default async function goDota(ctx: Context) {
   if (ctx.message) {

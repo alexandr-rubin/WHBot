@@ -1,6 +1,4 @@
-import { webhookCallback } from 'grammy'
 import bot from './bot'
-import env from '../helpers/env'
 import express from 'express'
 
 // eslint-disable-next-line import/prefer-default-export

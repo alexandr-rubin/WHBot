@@ -1,6 +1,4 @@
-import { CreateCompletionRequest, CreateCompletionResponse } from 'openai'
 import Context from '../models/Context'
-import openai from '../helpers/openai'
 
 export default async function goDota(ctx: Context) {
   if (ctx.chat) {
@@ -12,7 +10,7 @@ export default async function goDota(ctx: Context) {
       if (!member.user.is_bot) {
         const mention = member.user.username
           ? `<a href="tg://user?id=${member.user.id}">${member.user.username}</a>`
-          : `<a href="tg://user?id=${member.user.id}">${member.user.first_name}</a>(гомосек без юзернейма)`
+          : `<a href="tg://user?id=${member.user.id}">${member.user.first_name}</a>(без юзернейма)`
         mentions.push(mention)
       }
     })
