@@ -16,6 +16,7 @@ import handleHelp from './handlers/help'
 import handleLanguage from './handlers/language'
 import i18n from './helpers/i18n'
 import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
+import kidala from './handlers/kidala'
 import languageMenu from './menus/language'
 import mobilization from './handlers/mobilization'
 import motivate from './handlers/motivate'
@@ -49,6 +50,7 @@ async function runApp() {
   bot.command('ahaha', ahaha)
   bot.command('random', generateRandomNumberInRange)
   bot.on(':sticker', stikerDrop)
+  bot.on('message', kidala)
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
