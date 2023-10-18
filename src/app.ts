@@ -50,7 +50,7 @@ async function runApp() {
   bot.command('ahaha', ahaha)
   bot.command('random', generateRandomNumberInRange)
   bot.on(':sticker', stikerDrop)
-  bot.on('message', kidala)
+  // bot.on('message', kidala)
   // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
