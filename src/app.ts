@@ -8,6 +8,7 @@ import ahaha from './handlers/AHAHA'
 import attachUser from './middlewares/attachUser'
 import autoMotivate, { stopMotivate } from './handlers/autoMotivate'
 import bot from './helpers/bot'
+import chatGPT from './handlers/chatGPT'
 import configureI18n from './middlewares/configureI18n'
 import flipCoin from './handlers/flipCoin'
 import generateRandomNumberInRange from './handlers/randomNumber'
@@ -40,6 +41,7 @@ async function runApp() {
     .use(languageMenu)
   // Commands
   bot.command(['help', 'start'], handleHelp)
+  bot.command('chatGPT', chatGPT)
   bot.command('language', handleLanguage)
   bot.command('video', motivate)
   bot.command('buriatki', autoMotivate)
@@ -51,7 +53,6 @@ async function runApp() {
   bot.command('random', generateRandomNumberInRange)
   bot.on(':sticker', stikerDrop)
   // bot.on('message', kidala)
-  // bot.on('message', chatGPT)
   // Errors
   bot.catch(console.error)
   // Start bot

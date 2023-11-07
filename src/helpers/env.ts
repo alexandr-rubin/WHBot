@@ -10,5 +10,5 @@ export default cleanEnv(process.env, {
   TOKEN: str(),
   MONGO: str(),
   MONGOLOCAL: str(),
-  OPENAIAPIKEY: str(),
+  OPENAI_API_KEY: str(),
 })

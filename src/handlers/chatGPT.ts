@@ -10,7 +10,7 @@ export default async function chatGPT(ctx: Context) {
       model: 'gpt-3.5-turbo',
       prompt: message,
       max_tokens: 50,
-      temperature: 0.7,
+      temperature: 0,
       n: 1,
       stop: undefined,
     }
