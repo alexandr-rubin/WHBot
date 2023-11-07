@@ -1,4 +1,3 @@
-import { CreateCompletionRequest, CreateCompletionResponse } from 'openai'
 import Context from '../models/Context'
 import openai from '../helpers/openai'
 
@@ -6,21 +5,15 @@ export default async function chatGPT(ctx: Context) {
   if (ctx.message) {
     const message = ctx.message.text
 
-    const completionRequest: CreateCompletionRequest = {
+    const chatCompletion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      prompt: message,
+      messages: [{ role: 'user', content: message ?? 'hello' }],
       max_tokens: 50,
-      temperature: 0,
-      n: 1,
-      stop: undefined,
-    }
+    })
 
-    const response = await openai.createCompletion(completionRequest)
-    const responseData = response.data as CreateCompletionResponse | undefined
-    const reply =
-      responseData?.choices?.[0]?.text?.trim() ??
-      'No valid response received from the ChatGPT model.'
+    const responseMessage: string | null =
+      chatCompletion.choices[0].message.content
 
-    return ctx.reply(reply)
+    return ctx.reply(responseMessage ?? 'no response :(')
   }
 }
