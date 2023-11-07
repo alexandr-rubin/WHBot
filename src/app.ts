@@ -41,7 +41,7 @@ async function runApp() {
     .use(languageMenu)
   // Commands
   bot.command(['help', 'start'], handleHelp)
-  bot.command('chatGPT', chatGPT)
+  bot.command('chatgpt', chatGPT)
   bot.command('language', handleLanguage)
   bot.command('video', motivate)
   bot.command('buriatki', autoMotivate)
