@@ -1,5 +1,5 @@
 import Context from '../models/Context'
-import getMotivationPhoto from '../helpers/motivationPhotos'
+import getMotivationPhoto from '../helpers/buriatkiPhotos'
 
 let motivationInterval: NodeJS.Timer
 

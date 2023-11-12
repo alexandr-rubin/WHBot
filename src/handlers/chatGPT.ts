@@ -2,6 +2,7 @@ import Context from '../models/Context'
 import OpenAI from 'openai'
 import openai from '../helpers/openai'
 
+// ADD EMPTY MESSAGE HANDLER
 export default async function chatGPT(ctx: Context) {
   if (ctx.message) {
     const message = ctx.message.text
