@@ -17,6 +17,7 @@ import handleHelp from './handlers/help'
 import handleLanguage from './handlers/language'
 import i18n from './helpers/i18n'
 import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
+import increasePiCount from './handlers/increasePiCount'
 import kidala from './handlers/kidala'
 import languageMenu from './menus/language'
 import mobilization from './handlers/mobilization'
@@ -51,6 +52,7 @@ async function runApp() {
   bot.command('mobilization', mobilization)
   bot.command('ahaha', ahaha)
   bot.command('random', generateRandomNumberInRange)
+  bot.command('pi', increasePiCount)
   bot.on(':sticker', stikerDrop)
   // bot.on('message', kidala)
   // Errors

@@ -8,14 +8,16 @@ export class User {
   language!: string
   @prop({ required: true, default: 0 })
   piCount!: string
+  @prop({ required: true })
+  userName!: string
 }
 
 const UserModel = getModelForClass(User)
 
-export function findOrCreateUser(id: number) {
+export function findOrCreateUser(id: number, userName: string) {
   return UserModel.findOneAndUpdate(
     { id },
-    {},
+    { userName: userName },
     {
       upsert: true,
       new: true,
@@ -23,12 +25,12 @@ export function findOrCreateUser(id: number) {
   )
 }
 
-export function increasePi(id: number) {
+export function increasePi(userName: string) {
   return UserModel.findOneAndUpdate(
-    { id },
+    { userName: userName },
     { $inc: { piCount: 1 } },
     {
-      upsert: true,
+      upsert: false,
       new: true,
     }
   )
