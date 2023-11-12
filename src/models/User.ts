@@ -29,9 +29,6 @@ export function increasePi(userName: string) {
   return UserModel.findOneAndUpdate(
     { userName: userName },
     { $inc: { piCount: 1 } },
-    {
-      upsert: false,
-      new: true,
-    }
+    { new: true }
   )
 }
