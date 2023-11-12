@@ -7,7 +7,7 @@ export class User {
   @prop({ required: true, default: 'en' })
   language!: string
   @prop({ required: true, default: 0 })
-  piCount!: string
+  piCount!: number
   @prop({ required: true })
   userName!: string
 }
