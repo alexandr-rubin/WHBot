@@ -1,6 +1,6 @@
 import Context from '../models/Context'
 
-export default async function goDota(ctx: Context) {
+export default async function mobilization(ctx: Context) {
   if (ctx.chat) {
     const chatId = ctx.chat.id
     const chatMembers = await ctx.api.getChatAdministrators(chatId)

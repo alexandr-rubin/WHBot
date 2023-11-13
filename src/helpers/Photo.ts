@@ -6,7 +6,7 @@ const photos: string[] = [
   'https://i.pinimg.com/750x/de/f3/6c/def36cc8792e73975444d9f9395f6da8.jpg',
 ]
 
-export default function getMotivationPhoto() {
+export default function getPhoto() {
   const randomElement = (() =>
     photos[Math.floor(Math.random() * photos.length)])()
   return randomElement

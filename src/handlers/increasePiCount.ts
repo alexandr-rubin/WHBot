@@ -7,9 +7,9 @@ export default async function increasePiCount(ctx: Context) {
     const user = await increasePi(login[1])
     if (user) {
       return await ctx.reply(
-        user.userName + ' napizdel uje ' + user.piCount + ' raz(a)'
+        user.userName + ' lenzipan uje ' + user.piCount + ' raz(a)'
       )
     }
-    return await ctx.reply('takogo pizdabola netu')
+    return await ctx.reply('takogo chela netu')
   }
 }

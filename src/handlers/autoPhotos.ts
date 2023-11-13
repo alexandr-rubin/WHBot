@@ -1,19 +1,16 @@
 import Context from '../models/Context'
-import getMotivationPhoto from '../helpers/buriatkiPhotos'
+import getPhoto from '../helpers/Photo'
 
 let motivationInterval: NodeJS.Timer
 
-export default async function autoMotivate(ctx: Context) {
-  const photoUrl = getMotivationPhoto()
+//TODO: ADD CRON
+export default async function autoPhoto(ctx: Context) {
+  const photoUrl = getPhoto()
   return await ctx.replyWithPhoto(photoUrl, {
     caption: 'こんにちは',
   })
-
-  // Запуск функции сразу и повторение каждые 5 секунд
-  // void sendPeriodicMessage()
-  // motivationInterval = setInterval(sendPeriodicMessage, 5000)
 }
 
-export function stopMotivate() {
+export function stopPhoto() {
   clearInterval(motivationInterval)
 }
