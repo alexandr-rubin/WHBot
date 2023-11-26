@@ -18,7 +18,6 @@ import handleLanguage from './handlers/language'
 import i18n from './helpers/i18n'
 import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
 import increasePiCount from './handlers/increasePiCount'
-import kidala from './handlers/kidala'
 import languageMenu from './menus/language'
 import mobilization from './handlers/mobilization'
 import sendVideo from './handlers/motivate'
@@ -55,7 +54,6 @@ async function runApp() {
   bot.command('pi', increasePiCount)
   //TODO: ADD BAN STICKER COMMAND
   bot.on(':sticker', stikerDrop)
-  // bot.on('message', kidala)
   // Errors
   bot.catch(console.error)
   // Start bot
