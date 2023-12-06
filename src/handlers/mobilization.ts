@@ -14,7 +14,6 @@ export default async function mobilization(ctx: Context) {
         mentions.push(mention)
       }
     })
-    //this.bot.telegram.sendMessage(ctx.chat.id, mentions.join(' '), {parse_mode: 'HTML'})
     await ctx.api.sendMessage(ctx.chat.id, mentions.join(' '), {
       parse_mode: 'HTML',
     })

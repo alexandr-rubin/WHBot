@@ -26,7 +26,6 @@ export default async function chatGPT(ctx: Context) {
         console.error(error.type) // e.g. 'invalid_request_error'
         return ctx.reply(error.message)
       } else {
-        // Non-API error
         console.log(error)
         return ctx.reply('Non-API error')
       }
