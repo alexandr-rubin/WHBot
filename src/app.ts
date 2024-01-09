@@ -53,7 +53,7 @@ async function runApp() {
   bot.command('ahaha', ahaha)
   bot.command('random', generateRandomNumberInRange)
   bot.command('pi', increasePiCount)
-  bot.command('engTranslit', replaceWithRussianLayout)
+  bot.command('engtranslit', replaceWithRussianLayout)
   //TODO: ADD BAN STICKER COMMAND
   bot.on(':sticker', stikerDrop)
   // Errors
