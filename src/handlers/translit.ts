@@ -2,7 +2,7 @@ import Context from '../models/Context'
 import getRussianLayoutMapping from '../helpers/russianLayoutMapping'
 
 export default async function replaceWithRussianLayout(ctx: Context) {
-  if (ctx.message && ctx.message.text) {
+  if (ctx.message && ctx.message.text && ctx.message.text.trim() !== '') {
     const layoutMapping = getRussianLayoutMapping()
     const message = ctx.message.text.split(' ')[1]
     const resultArray = message
