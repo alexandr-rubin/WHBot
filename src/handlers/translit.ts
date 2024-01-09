@@ -11,7 +11,7 @@ export default async function replaceWithRussianLayout(ctx: Context) {
     }
 
     const layoutMapping = getRussianLayoutMapping()
-    const messageText = message.slice(1).join(' ')
+    const messageText = message.slice(1)
     const result: string[] = []
     for (let i = 0; i < messageText.length; i++) {
       result.push(
