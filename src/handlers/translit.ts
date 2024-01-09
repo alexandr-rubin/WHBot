@@ -11,11 +11,16 @@ export default async function replaceWithRussianLayout(ctx: Context) {
     }
 
     const layoutMapping = getRussianLayoutMapping()
-    const messageText = message.slice(1).join('')
-    const resultArray = messageText
-      .split('')
-      .map((char) => layoutMapping[char] || char)
-    const result = resultArray.join('')
-    return await ctx.reply(result)
+    const messageText = message.slice(1).join(' ')
+    const result: string[] = []
+    for (let i = 0; i < messageText.length; i++) {
+      result.push(
+        messageText[i]
+          .split('')
+          .map((char) => layoutMapping[char] || char)
+          .join('')
+      )
+    }
+    return await ctx.reply(result.join(' '))
   }
 }
