@@ -20,6 +20,7 @@ import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
 import increasePiCount from './handlers/increasePiCount'
 import languageMenu from './menus/language'
 import mobilization from './handlers/mobilization'
+import replaceWithRussianLayout from './handlers/translit'
 import sendVideo from './handlers/motivate'
 import startMongo from './helpers/startMongo'
 import stikerDrop from './handlers/stikerDrop'
@@ -52,6 +53,7 @@ async function runApp() {
   bot.command('ahaha', ahaha)
   bot.command('random', generateRandomNumberInRange)
   bot.command('pi', increasePiCount)
+  bot.command('engTranslit', replaceWithRussianLayout)
   //TODO: ADD BAN STICKER COMMAND
   bot.on(':sticker', stikerDrop)
   // Errors
