@@ -24,6 +24,7 @@ import replaceWithRussianLayout from './handlers/translit'
 import sendVideo from './handlers/motivate'
 import startMongo from './helpers/startMongo'
 import stikerDrop from './handlers/stikerDrop'
+import tikTokVideo from './handlers/tikTokVideo'
 
 async function runApp() {
   console.log('Starting app...')
@@ -54,6 +55,8 @@ async function runApp() {
   bot.command('random', generateRandomNumberInRange)
   bot.command('pi', increasePiCount)
   bot.command('engtranslit', replaceWithRussianLayout)
+
+  bot.on('message:text', tikTokVideo)
   //TODO: ADD BAN STICKER COMMAND
   bot.on(':sticker', stikerDrop)
   // Errors
