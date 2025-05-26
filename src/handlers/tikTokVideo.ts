@@ -1,7 +1,7 @@
 import { InputFile } from 'grammy'
 import { InputMediaPhoto } from 'grammy/types'
 import Context from '../models/Context'
-import fetch from 'node-fetch'
+import axios from 'axios'
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
 const MAX_MEDIA_GROUP_SIZE = 10
@@ -14,24 +14,23 @@ async function safeSendMessage(ctx: Context, text: string) {
   }
 }
 
+// TODO: FIX
 async function downloadImage(url: string): Promise<InputFile | null> {
   try {
-    const res = await fetch(url)
-    if (!res.ok) {
-      console.error(`Failed to fetch image ${url} - status: ${res.status}`)
-      return null
-    }
-    const contentType = res.headers.get('Content-Type') || ''
+    const res = await axios.get(url, { responseType: 'arraybuffer' })
+    const contentType = res.headers['content-type'] || ''
     if (!contentType.startsWith('image')) {
       console.error(`Invalid content-type for image ${url}: ${contentType}`)
       return null
     }
-    const contentLength = res.headers.get('Content-Length')
+    const contentLength = res.headers['content-length']
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     if (contentLength && parseInt(contentLength) > MAX_FILE_SIZE) {
       console.error(`Image too large: ${url}, size: ${contentLength}`)
       return null
     }
-    const buffer = Buffer.from(await res.arrayBuffer())
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const buffer = Buffer.from(res.data)
     return new InputFile(buffer, `image-${Date.now()}.jpg`)
   } catch (err) {
     console.error(`Error downloading image ${url}:`, err)
@@ -58,11 +57,8 @@ export default async function tikTokVideo(ctx: Context) {
     'https://www.tikwm.com/api/?url=' + encodeURIComponent(text) + '&hd=1'
 
   try {
-    const response = await fetch(reqvideourl)
-    if (!response.ok)
-      throw new Error(`Network response was not ok: ${response.status}`)
-
-    const data = (await response.json()) as {
+    const response = await axios.get(reqvideourl)
+    const data = response.data as {
       code: number
       data: {
         type?: number
@@ -92,10 +88,7 @@ export default async function tikTokVideo(ctx: Context) {
     const hasMusic = !!music
 
     if (isSlideshow && isImageSet) {
-      // Параллельно скачиваем все картинки
       const downloads = await Promise.all(images!.map(downloadImage))
-
-      // Фильтруем только успешные загрузки
       const validMedia: InputMediaPhoto[] = downloads
         .map((file, idx) =>
           file
@@ -116,7 +109,6 @@ export default async function tikTokVideo(ctx: Context) {
         return
       }
 
-      // Разбиваем на чанки по 10 и отправляем все чанки подряд
       const chunks = chunkArray(validMedia, MAX_MEDIA_GROUP_SIZE)
       for (const chunk of chunks) {
         try {
@@ -143,8 +135,8 @@ export default async function tikTokVideo(ctx: Context) {
 
     if (hasVideo) {
       try {
-        const headRes = await fetch(play!, { method: 'HEAD' })
-        const contentType = headRes.headers.get('Content-Type') || ''
+        const headRes = await axios.head(play!)
+        const contentType = headRes.headers['content-type'] || ''
         if (!contentType.startsWith('video')) {
           await safeSendMessage(ctx, '❌ Content is not a video.')
           return
