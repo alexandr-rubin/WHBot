@@ -48,8 +48,14 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 
 export default async function tikTokVideo(ctx: Context) {
   const text = ctx.message?.text || ''
-  if (!ctx.chat) return
-  if (!text.includes('tiktok.com')) return
+  if (!ctx.chat) {
+    console.error('No chat context available')
+    return
+  }
+  if (!text.includes('tiktok.com')) {
+    console.log('No TikTok link found in message:', text)
+    return
+  }
 
   await safeSendMessage(ctx, '⏳ Please wait, fetching content...')
 
