@@ -3,8 +3,6 @@ import Context from '../models/Context'
 import axios from 'axios'
 
 const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
-const MAX_VIDEO_FILE_SIZE = 50 * 1024 * 1024 // 50 MB
-const MAX_AUDIO_FILE_SIZE = 20 * 1024 * 1024 // 20 MB
 const MAX_MEDIA_GROUP_SIZE = 10
 
 type InputMediaPhoto = {
@@ -83,24 +81,6 @@ async function downloadImage(url: string): Promise<InputFile | null> {
     'image',
     MAX_IMAGE_FILE_SIZE,
     `image-${Date.now()}.jpg`
-  )
-}
-
-async function downloadVideo(url: string): Promise<InputFile | null> {
-  return await downloadMedia(
-    url,
-    'video',
-    MAX_VIDEO_FILE_SIZE,
-    `tiktok-${Date.now()}.mp4`
-  )
-}
-
-async function downloadAudio(url: string): Promise<InputFile | null> {
-  return await downloadMedia(
-    url,
-    'audio',
-    MAX_AUDIO_FILE_SIZE,
-    `tiktok-audio-${Date.now()}.mp3`
   )
 }
 
@@ -227,32 +207,18 @@ export default async function tikTokVideo(ctx: Context) {
     if (hasVideo) {
       try {
         const playUrl = play as string
-        const videoFile = await downloadVideo(playUrl)
-        if (!videoFile) {
-          await safeSendMessage(
-            ctx,
-            chatId,
-            '❌ Could not download the TikTok video file.'
-          )
-          return
-        }
-
-        await ctx.api.sendVideo(chatId, videoFile, {
+        await ctx.api.sendVideo(chatId, playUrl, {
           caption: '📹 Here is your TikTok video!',
         })
 
         if (hasMusic) {
-          const audioFile = await downloadAudio(music as string)
-          if (audioFile) {
-            await ctx.api.sendAudio(chatId, audioFile, {
-              caption: '🎵 Background music',
-            })
-          } else {
-            console.error('Failed to download TikTok background music.')
-          }
+          const musicUrl = music as string
+          await ctx.api.sendAudio(chatId, musicUrl, {
+            caption: '🎵 Background music',
+          })
         }
       } catch (err) {
-        console.error('Error sending video:', err)
+        console.error('Error sending video by URL:', err)
         await safeSendMessage(ctx, chatId, '❌ Error sending TikTok video.')
       }
       return
@@ -260,21 +226,12 @@ export default async function tikTokVideo(ctx: Context) {
 
     if (hasMusic) {
       try {
-        const audioFile = await downloadAudio(music as string)
-        if (!audioFile) {
-          await safeSendMessage(
-            ctx,
-            chatId,
-            '❌ Error downloading TikTok audio.'
-          )
-          return
-        }
-
-        await ctx.api.sendAudio(chatId, audioFile, {
+        const musicUrl = music as string
+        await ctx.api.sendAudio(chatId, musicUrl, {
           caption: '🎧 TikTok audio',
         })
       } catch (err) {
-        console.error('Error sending audio:', err)
+        console.error('Error sending audio by URL:', err)
         await safeSendMessage(ctx, chatId, '❌ Error sending TikTok audio.')
       }
       return
