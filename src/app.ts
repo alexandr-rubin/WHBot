@@ -36,7 +36,7 @@ async function runApp() {
     .use(ignoreOldMessageUpdates)
     .use(sequentialize())
     .use(ignoreOld())
-    .use(attachUser)
+    // .use(attachUser)
     .use(i18n.middleware())
     .use(configureI18n)
     // Menus
