@@ -1,5 +1,4 @@
 import { InputFile } from 'grammy'
-import { InputMediaPhoto } from 'grammy/types'
 import Context from '../models/Context'
 import axios from 'axios'
 
@@ -7,6 +6,12 @@ const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
 const MAX_VIDEO_FILE_SIZE = 50 * 1024 * 1024 // 50 MB
 const MAX_AUDIO_FILE_SIZE = 20 * 1024 * 1024 // 20 MB
 const MAX_MEDIA_GROUP_SIZE = 10
+
+type InputMediaPhoto = {
+  type: 'photo'
+  media: InputFile
+  caption?: string
+}
 
 async function safeSendMessage(ctx: Context, chatId: number, text: string) {
   try {
