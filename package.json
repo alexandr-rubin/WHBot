@@ -28,6 +28,9 @@
     "mongoose": "^7.3.2",
     "openai": "^4.16.1"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "devDependencies": {
     "@typegoose/typegoose": "^11.3.0",
     "@types/js-yaml": "^4.0.5",
