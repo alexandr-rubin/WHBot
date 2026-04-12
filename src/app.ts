@@ -20,6 +20,7 @@ import ignoreOldMessageUpdates from './middlewares/ignoreOldMessageUpdates'
 import increasePiCount from './handlers/increasePiCount'
 import languageMenu from './menus/language'
 import mobilization from './handlers/mobilization'
+import ollama from './handlers/ollama'
 import replaceWithRussianLayout from './handlers/translit'
 import sendVideo from './handlers/motivate'
 import startMongo from './helpers/startMongo'
@@ -44,6 +45,7 @@ async function runApp() {
   // Commands
   bot.command(['help', 'start'], handleHelp)
   bot.command('chatgpt', chatGPT)
+  bot.command('ollama', ollama)
   bot.command('language', handleLanguage)
   bot.command('video', sendVideo)
   bot.command('photo', autoPhoto)

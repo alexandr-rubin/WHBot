@@ -11,4 +11,6 @@ export default cleanEnv(process.env, {
   MONGO: str(),
   MONGOLOCAL: str(),
   OPENAI_API_KEY: str(),
+  OLLAMA_BASE_URL: str({ default: 'http://127.0.0.1:11434' }),
+  OLLAMA_MODEL: str({ default: 'llama3.2' }),
 })
