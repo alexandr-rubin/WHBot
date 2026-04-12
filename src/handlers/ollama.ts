@@ -1,3 +1,4 @@
+import { getOllamaBaseUrl } from '../helpers/ollamaRuntimeConfig'
 import Context from '../models/Context'
 import axios from 'axios'
 import env from '../helpers/env'
@@ -20,7 +21,7 @@ export default async function ollama(ctx: Context) {
     )
   }
 
-  const base = env.OLLAMA_BASE_URL.replace(/\/$/, '')
+  const base = getOllamaBaseUrl()
   const url = `${base}/api/chat`
 
   type OllamaChatResponse = { message?: { content?: string }; error?: string }
