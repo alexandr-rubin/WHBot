@@ -19,6 +19,20 @@ async function safeSendMessage(ctx: Context, chatId: number, text: string) {
   }
 }
 
+function headerToString(header: unknown): string {
+  if (!header) return ''
+
+  if (Array.isArray(header) && typeof header[0] === 'string') {
+    return header[0]
+  }
+
+  if (typeof header === 'string') {
+    return header
+  }
+
+  return String(header)
+}
+
 function parseContentLength(header: unknown): number | null {
   if (!header) return null
 
@@ -49,7 +63,7 @@ async function downloadMedia(
       validateStatus: (status: number) => status >= 200 && status < 300,
     })
 
-    const contentType = res.headers['content-type'] || ''
+    const contentType = headerToString(res.headers['content-type'])
     if (!contentType.startsWith(expectedTypePrefix)) {
       console.error(
         `Invalid content-type for ${url}: expected ${expectedTypePrefix}*, got ${contentType}`
